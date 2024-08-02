@@ -1,0 +1,3 @@
+/home/k32ar/Projects/C Buddies/File Manager/build/CMakeFiles/File-Manager.dir
+/home/k32ar/Projects/C Buddies/File Manager/build/CMakeFiles/edit_cache.dir
+/home/k32ar/Projects/C Buddies/File Manager/build/CMakeFiles/rebuild_cache.dir

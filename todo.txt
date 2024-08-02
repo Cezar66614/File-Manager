@@ -1,0 +1,6 @@
+TODO:
+- Navigate Directories
+- Creating / Deleting Directories
+- Creating / Deleting Files
+- Search ( + with tags )
+- https://tinkeros.github.io/WbGit/Doc/RedSea.html

@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/k32ar/Projects/C Buddies/File Manager/build",
+  "command": "/usr/bin/cc -g -std=gnu11 -o CMakeFiles/File-Manager.dir/src/main.c.o -c \"/home/k32ar/Projects/C Buddies/File Manager/src/main.c\"",
+  "file": "/home/k32ar/Projects/C Buddies/File Manager/src/main.c"
+}
+]
