@@ -4,3 +4,15 @@ TODO:
 - Creating / Deleting Files
 - Search ( + with tags )
 - https://tinkeros.github.io/WbGit/Doc/RedSea.html
+
+Work Split:
+1. CarReal8917
+2. HatTapper
+3. K32ar
+4. TheNono158
+5. Katalysmus
+
+1. Settings page
+2. Shortcuts page
+4. Main page
+  
