@@ -9,52 +9,11 @@
 #ifndef FAIL
     #define FAIL -1;
 #endif
+// placeholder for shortcut names
+#define PLACEHOLDER_HEADER "<shortcut>"
 
 // initialize prototypes
-int initializeShortcutMenu(void);
-int showShortcutMenu(void);
-int hideShortcutMenu(void);
+WINDOW* initializeShortcutMenu(void); // creates a new window as a container for the shortcut menu, returns the address of the window
+int showShortcutMenu(WINDOW* window);
+int hideShortcutMenu(WINDOW* window);
 int freeShortcutMenu(WINDOW* window);
-
-
-// initializes command window
-int initializeShortcutMenu(void)
-{
-    int startx, starty, width, height;
-    int charBuffer;
-    WINDOW* shortcutWindow;
-
-    height = 12; width = 24;
-    starty = (LINES - height) / 2; startx = (COLS - width) / 2; // calculates a centered placement of the window
-
-    shortcutWindow = newwin(height, width, starty, startx); // create new window and give it a standard border
-    box(shortcutWindow, 0, 0);
-    wrefresh(shortcutWindow);
-
-    // free menu and close program after keypress
-    wgetch(shortcutWindow);
-    freeShortcutMenu(shortcutWindow);
-    return SUCCESS;
-}
-
-int showShortcutMenu(void)
-{
-
-    return SUCCESS;
-}
-
-int hideShortcutMenu(void)
-{
-
-    return SUCCESS;
-}
-
-// function to destroy window
-int freeShortcutMenu(WINDOW* window)
-{
-    box(window, ' ', ' ');
-    wborder(window, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
-    wrefresh(window);
-    delwin(window);
-    return SUCCESS;
-}
