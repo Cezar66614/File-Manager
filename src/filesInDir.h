@@ -1,5 +1,8 @@
 #pragma once
 
+#define BD_FLAGS A_REVERSE
+#define SEL_FILE_FLAG A_REVERSE
+
 typedef struct fileViewer
 {
     char *path;

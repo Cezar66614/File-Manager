@@ -1,8 +1,7 @@
 #include "filesInDir.h"
 
 #include <ncurses.h>
-#include <stdio.h>
-#include <sys/types.h>
+#include <stdint.h>
 
 // https://stackoverflow.com/questions/612097/how-can-i-get-the-list-of-files-in-a-directory-using-c-or-c
 // This is cross platform file reading
@@ -10,45 +9,63 @@
 
 void displayFilesOfDir(fileViewer_t fV)
 {
-    // I dont know why i need this but it seems to work in settings menu
-    // TODO: Understand how this works but it aint broke so dont fix
-    clear();
-    refresh();
+    // limits so it only displays the next _ files
+    static const ulong MAX_FILE_DISP = 10;
+
+    uint32_t input;
+    uint8_t sel_index = 0;
+    uint16_t y_max, x_max, h_win, w_win, y_start, x_start;
+    tinydir_dir dir;
+    WINDOW *dir_win = NULL;
+
+    clear();    // empty the screen
+    refresh();  // show the empty screen
 
     // Initialises the window i guess
-    uint y_max, x_max, win_height, win_width, start_y, start_x;
     getmaxyx(stdscr, y_max, x_max);
-    win_height = y_max - 20;
-    win_width = x_max - 20;
-    start_y = 10;
-    start_x = 10;
+    h_win = y_max - 20;
+    w_win = x_max - 20;
+    y_start = 10;
+    x_start = 10;
+    dir_win = newwin(h_win, w_win, y_start, x_start);
 
-    WINDOW *directory = newwin(win_height, win_width, start_y, start_x);
-    box(directory, 0, 0);
-    wprintw(directory, "current directory is: %s", fV.path);
+    // draws a nice border around the window
+    wattron(dir_win, BD_FLAGS);
+    box(dir_win, 0, 0);
+    wattroff(dir_win, BD_FLAGS);
+    curs_set(0);
 
-    // This function is called often, so to reduce syscalls I declare them
-    // static
-    tinydir_dir dir;
+    wprintw(dir_win, "current directory is: %s", fV.path);
+
     tinydir_open_sorted(&dir, fV.path);
-    uint highlight_index = 0;
-    keypad(directory, true);
-    start_color();
-    init_pair(1, COLOR_CYAN, COLOR_BLACK);
 
-    for (unsigned int i = 0; i < dir.n_files; i++)
+    // Now it will only display n files at once, where n is MAX_FILE_DISP
+    do
     {
-        tinydir_file file;
-        tinydir_readfile_n(&dir, &file, i);
-
-        if (file.is_dir)
+        for (uint8_t file_index = sel_index; file_index < (dir.n_files);
+             ++file_index)
         {
-            // printf("/");
+            tinydir_file file;
+            tinydir_readfile_n(&dir, &file, file_index);
+
+            wattron(dir_win, SEL_FILE_FLAG * (file_index == sel_index));
+            mvwprintw(dir_win, file_index + 2, 10, "%s%s", file.name,
+                      file.is_dir ? "/" : "");
+            wattroff(dir_win, SEL_FILE_FLAG);
         }
-        mvwprintw(directory, i + 2, 10, "%s", file.name);
-    }
-    wrefresh(directory);
+        input = wgetch(dir_win);
+        switch (input)
+        {
+            case 'k':
+                sel_index -= (sel_index > 0);
+                break;
+            case 'j':
+                sel_index += sel_index < (dir.n_files);
+                break;
+        }
+        wrefresh(dir_win);
+    } while (input != 'q');
 
     tinydir_close(&dir);
-    delwin(directory);
+    delwin(dir_win);
 }
