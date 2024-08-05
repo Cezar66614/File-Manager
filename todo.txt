@@ -15,4 +15,5 @@ Work Split:
 1. Settings page
 2. Shortcuts page
 4. Main page
-  
+5. Navigate directories
+

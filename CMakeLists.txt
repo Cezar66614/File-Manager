@@ -5,6 +5,10 @@ set(
   PROG_SRCS
 
   src/main.c
+  src/main_menu/main_menu.c
+  src/setting_menu/setting_menu.c
+  src/shortcut_menu/shortcut_menu.c
+  src/filesInDir.c
 )
 
 set(CMAKE_C_STANDARD 11)
