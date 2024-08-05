@@ -26,7 +26,6 @@ void displayFilesOfDir(fileViewer_t fV)
     WINDOW *directory = newwin(win_height, win_width, start_y, start_x);
     box(directory, 0, 0);
     wprintw(directory, "current directory is: %s", fV.path);
-    wrefresh(directory);
 
     // This function is called often, so to reduce syscalls I declare them
     // static
@@ -46,8 +45,9 @@ void displayFilesOfDir(fileViewer_t fV)
         {
             // printf("/");
         }
-        printf("%d\n", mvwprintw(directory, i + 2, 10, "%s", file.name));
+        mvwprintw(directory, i + 2, 10, "%s", file.name);
     }
+    wrefresh(directory);
 
     tinydir_close(&dir);
     delwin(directory);
