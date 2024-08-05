@@ -12,3 +12,4 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 add_executable(${PROJECT_NAME} ${PROG_SRCS})
 target_link_libraries(${PROJECT_NAME} pthread)
+target_link_libraries(${PROJECT_NAME} ncurses)
