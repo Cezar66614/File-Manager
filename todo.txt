@@ -1,9 +1,9 @@
 TODO:
-- Navigate Directories
-- Creating / Deleting Directories
-- Creating / Deleting Files
-- Search ( + with tags )
-- https://tinkeros.github.io/WbGit/Doc/RedSea.html
+[x] Navigate Directories
+[ ] Creating / Deleting Directories
+[ ] Creating / Deleting Files
+[ ] Search ( + with tags )
+[ ] https://tinkeros.github.io/WbGit/Doc/RedSea.html
 
 Work Split:
 1. CarReal8917
@@ -15,5 +15,5 @@ Work Split:
 1. Settings page
 2. Shortcuts page
 4. Main page
-5. Navigate directories
+5. Creating / Deleting Directories
 
