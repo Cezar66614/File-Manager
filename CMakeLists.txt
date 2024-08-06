@@ -9,6 +9,8 @@ set(
   src/setting_menu/setting_menu.c
   src/shortcut_menu/shortcut_menu.c
   src/filesInDir.c
+  src/dsa/stack.c
+  src/dsa/node.c
 )
 
 set(CMAKE_C_STANDARD 11)

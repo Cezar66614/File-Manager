@@ -1,5 +1,7 @@
 #include "setting_menu.h"
 
+#include <ncurses.h>
+
 void open_setting_win()
 {
     clear();
