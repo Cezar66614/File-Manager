@@ -115,7 +115,7 @@ void displayFilesOfDir(fileViewer_t *fV)
                 //   increment the selected index (the scrolling effect)
                 // because we dont want to highlight unless the file_to_disp is
                 //   at the end of the files, we use the AND statement
-                sel_index += file_to_disp == (dir.n_files - MAX_FILE_DISP) &&
+                sel_index += file_to_disp >= (dir.n_files - MAX_FILE_DISP) &&
                              (sel_index < MAX_FILE_DISP - 1);
                 break;
             case '\n':
@@ -131,7 +131,11 @@ void displayFilesOfDir(fileViewer_t *fV)
                     {
                         // go to the parent directory
                         if ((strcmp(file.name, "..") == 0) &&
-                            (fV->pathWalker.tail != &fV->pathWalker.head))
+                            (fV->pathWalker.tail != &fV->pathWalker.head) &&
+                            !(strcmp(fV->pathWalker.tail->data, "../") == 0))
+                        // the last check ensures you can go back twice
+                        // because without the last check it would go to the
+                        // parent diretory instead of exiting the current one
                         {
                             fV->pathWalker.current = stack_pop(&fV->pathWalker);
                             free(fV->pathWalker.current->data);
