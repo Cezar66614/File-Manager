@@ -9,10 +9,9 @@
 // Maybe use a macro or make it part of the build system
 #define PATH_SEP '/'
 
-typedef struct fileViewer
-{
-    char *path;
-    stack_t pathWalker;
-} fileViewer_t;
-
-void displayFilesOfDir(fileViewer_t *fV);
+void get_visible_files(stack_t *stk, char *path, uint8_t maxFiles,
+                       uint8_t offset);
+char *build_path(char *storage, stack_t *stk);
+void file_push(stack_t *stk, char *file);
+void dir_push(stack_t *stk, char *subdir);
+void dir_pop(stack_t *stk);

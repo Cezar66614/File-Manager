@@ -1,8 +1,7 @@
 #pragma once
-#include <stdlib.h>
+#include <stdint.h>
 
-typedef struct node
-{
+typedef struct node {
     void *data;
     struct node *left;    // generic data structures
     struct node *right;   // functionally next and prev
@@ -10,4 +9,4 @@ typedef struct node
     struct node *child;   // for graphs
 } node_t;
 
-void node_init(node_t *n);
+void node_init(node_t *n, void *data, uint64_t size);

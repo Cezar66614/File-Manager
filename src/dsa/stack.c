@@ -1,18 +1,17 @@
 #include "stack.h"
 
+#include <stdlib.h>
+
 #include "node.h"
 
-void stack_init(stack_t *stk)
-{
-    node_init(&stk->head);
+void stack_init(stack_t *stk) {
+    node_init(&stk->head, NULL, 0);
     stk->tail = &stk->head;
     stk->length = 0;
 }
 
-void stack_push(stack_t *stk, node_t *node)
-{
-    if (stk->length++ == 0)
-    {
+void stack_push(stack_t *stk, node_t *node) {
+    if (stk->length++ == 0) {
         stk->head = *node;
         stk->tail = &stk->head;
         return;
@@ -22,8 +21,7 @@ void stack_push(stack_t *stk, node_t *node)
     stk->tail = stk->tail->child;
 }
 
-node_t *stack_pop(stack_t *stk)
-{
+node_t *stack_pop(stack_t *stk) {
     // according to a keynote on c it is bad to use allocators in library code
     // LINK: https://youtu.be/QpAhX-gsHMs?t=2290
     stk->tail = stk->tail->parent;
