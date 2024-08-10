@@ -15,4 +15,11 @@ Work Split:
 1. Settings page
 2. Shortcuts page
 4. Main page
-  
+
+Thoughts:
+- Make a "render line":
+  Solution to the proper rendering of multiple windows drawn on top of eachother (when deleting or moving a window around).
+  We can have a list of all the windows rendered up to that point.
+  We then find all the windows that are occluded by our current one and pick the one that appears first in the list.
+  After that we render every window down the list, starting from the window picked before.
+  Optimization ideas: Use a graph strucure so the list is the graph sorted topologically.
